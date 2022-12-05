@@ -16,28 +16,48 @@ A few NLP options that can be used in accordance with this repo:
 * https://www.nlm.nih.gov/research/umls/implementation_resources/metamap.html
 * https://www.johnsnowlabs.com/spark-nlp-health/
 
-To run the project, execute these files in order:
+To run the project, see these steps:
+## NLP
+Prepare MIMICIII data for NLP:
 * code/notebooks/prepare_for_nlp
-* code/colab/spark_nlp
-* code/notebooks/prepare_for_nn
-* code/colab/mlp
-* code/notebooks/prepare_for_svm
-* code/colab/svm
 
-Also of interest:
+Prepare i2b2 data for NLP:
+* code/notebooks/prepare_xml_for_modeling
+
+If using MetaMap and AWS Lambda, see:
+* code/lambda/get_metamap_response
+* code/lambda/send_nlp_files
+
+If using Spark NLP, see:
+* code/colab/spark_nlp
+
+Recommended to adapt the above for use in a distributed Spark environment.
+
+If using cTAKES, that will do the work once you provide the input data.
+
+## Train patient representations
+Prepare for training:
+* code/notebooks/prepare_for_nn
+
+Run MLP to train on MIMICIII data:
+* code/colab/mlp
+
+
+## Use dense patient vectors for classification
+Train i2b2 data and extract patient activations from the hidden layer:
+* code/colab/mlp
+
+Train classifiers:
+* code/notebooks/svm
+
+## Also of interest
 * code/notebooks/eda
 
-Directory structure:
+## Directory structure
 * code
 *    ...
 * data
 * --clinical_vocab - UMLS metathesaurus
 * --consumed - output of code
-* --ctakes_in - for use with cTAKES
-* --ctakes_in_complete - for use with cTAKES
-* --ctakes_out - for use with cTAKES
-* --ctakes_out_complete - for use with cTAKES
-* --i2b2 - data for SVMs
-* --nlp_jsl - Spark NLP output
-* --nlp_raw - MetaMap output
+* ...
 * profiling - data profiling output
